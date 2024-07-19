@@ -45,46 +45,31 @@ def register_details(page, novels):
             text_to_input = f'作品名：{title}\n作者名：{author}'
             existing_text = textfield.text
 
-            if text_to_input not in existing_text:
-                textfield.input(text_to_input)
+            if text_to_input.split('\n')[0] not in existing_text.split(' ') or text_to_input.split('\n')[1] not in existing_text.split(' '):
+                textfield.input(text_to_input, clear=True)
             else:
                 pass
             script = f"""
                 var ul = document.querySelector('ul.tagit.ui-widget.ui-widget-content.ui-corner-all');
-                var exists = Array.from(ul.children).some(li => li.querySelector('span.tagit-label').textContent === '{title}');
+                var exists = Array.from(ul.children).some(li => li.childNodes[0].textContent === '{title}');
                 if (!exists) {{
-                    var li = document.createElement('li');
-                    li.className = 'tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable';
-                    var span = document.createElement('span');
-                    span.className = 'tagit-label';
-                    span.textContent = '{title}';
-                    var a = document.createElement('a');
-                    a.className = 'tagit-close';
-                    var spanIcon = document.createElement('span');
-                    spanIcon.className = 'text-icon';
-                    spanIcon.textContent = '×';
-                    var spanUiIcon = document.createElement('span');
-                    spanUiIcon.className = 'ui-icon ui-icon-close';
-                    a.appendChild(spanIcon);
-                    a.appendChild(spanUiIcon);
-                    li.appendChild(span);
-                    li.appendChild(a);
-                    ul.appendChild(li);
+                    document.getElementById('singleFieldTags2').value += ',{title}'
                 }}
             """
-            page.run_script(script)
+            page.run_js(script)
             sleep(1)
             page.ele("@value=詳細内容登録").click()
             sleep(2)
     except Exception as e:
-        print(f'対象の小説は削除されているか或は非公開に設定されています。\n \'https://www.google.com/search?q=site:syosetu.org NID={novel}\' にて該当作品の情報が見つかるかもしれません')
-        continue
+        print(e)
+        print(f'対象の小説は削除されているか或は非公開に設定されています。\n \'https://www.google.com/search?q=site:syosetu.org%20nid={novel}\' にて該当作品の情報が見つかるかもしれません')
+        #continue
 
 
 def main():
     userId = os.getenv('USER_ID')
     password = os.getenv('USER_PASSWORD')
-    
+
     co = ChromiumOptions()
     co.incognito()
     co.headless()
