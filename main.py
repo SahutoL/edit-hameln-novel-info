@@ -37,11 +37,17 @@ def register_details(page, novels):
         for novel in novels:
             url = f'https://syosetu.org/?mode=favo_input&nid={novel}'
             page.get(url)
-            page.ele("#text").input('')
             author = page.ele(".section3").ele('tag:h3').text.split('）(')[0].split('（作者：')[1]
             title = page.ele(f'@href=https://syosetu.org/novel/{novel}/').text
-            page.ele("#text").input(f'作品名：{title}\n作者名：{author}')
-            page.ele("@value=詳細内容登録").click()
+            textfield = page.ele("#text")
+            text_to_input = f'作品名：{title}\n作者名：{author}'
+            existing_text = textfield.text
+
+            if text_to_input not in existing_text:
+                textfield.input(text_to_input)
+                page.ele("@value=詳細内容登録").click()
+            else:
+                pass
             sleep(2)
     except Exception as e:
         print(f"詳細内容登録エラー: {e}")
