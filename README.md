@@ -11,8 +11,13 @@
 
 ## 使用方法
 
+ルートディレクトリに`.env`ファイルを作成し、以下を記述します。
+```
+USER_ID={your_id}
+USER_PASSWORD={your_password}
+```
+
+必要なライブラリをインストールした後で、以下のコマンドを実行できます。
 ```
 python main.py
-userId: {userId}
-password: {password}
 ```
