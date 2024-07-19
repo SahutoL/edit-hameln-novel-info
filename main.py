@@ -17,10 +17,10 @@ def login(page, userId, password):
         return
 
 def get_favorites(page):
+    novels = list()
     try:
         page.get("https://syosetu.org/?mode=favo")
         page_num = (int(page.ele(".heading").text[3:-1]) // 10) + 1
-        novels = []
         for i in range(int(page_num)):
             page.get(f'https://syosetu.org/?mode=favo&page={i+1}')
             links = page.eles("@name=multi_id")
@@ -28,9 +28,8 @@ def get_favorites(page):
             sleep(3)
         return novels
     except Exception as e:
-        print(f"お気に入り取得エラー: {e}")
-        page.quit()
-        return []
+        print(f"お気に入り小説取得エラー: {e}")
+        return novels
 
 def register_details(page, novels):
     try:
@@ -76,7 +75,7 @@ def register_details(page, novels):
             sleep(2)
     except Exception as e:
         print(f'詳細内容登録エラー: {e}')
-        page.quit()
+
 
 def main():
     userId = os.getenv('USER_ID')
