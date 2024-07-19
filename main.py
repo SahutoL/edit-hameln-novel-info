@@ -39,4 +39,4 @@ def main(userId: str, password: str):
         sleep(2)
     page.quit()
 
-main(input(), input())
+main(input('userId: '), input('password: '))
