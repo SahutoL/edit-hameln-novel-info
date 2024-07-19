@@ -1,6 +1,6 @@
 ## 概要
 
-本プロジェクトは、[DrissionPage](https://github.com/g1879/DrissionPage)を使用してweb小説投稿サイト[ハーメルン](https://syosetu.org）へログインし、お気に入り登録された全ての小説のメモ及びタグを編集するツールです。
+本プロジェクトは、[DrissionPage](https://github.com/g1879/DrissionPage)を使用してweb小説投稿サイト[ハーメルン](https://syosetu.org)へログインし、お気に入り登録された全ての小説のメモ及びタグを編集するツールです。
 
 ## 主な機能
 
