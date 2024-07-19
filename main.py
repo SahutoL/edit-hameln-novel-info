@@ -74,7 +74,8 @@ def register_details(page, novels):
             page.ele("@value=詳細内容登録").click()
             sleep(2)
     except Exception as e:
-        print(f'詳細内容登録エラー: {e}')
+        print(f'対象の小説は削除されているか或は非公開に設定されています。\n https://www.google.com/search?q=site:syosetu.org NID={novel} にて該当作品の情報が見つかるかもしれません')
+        continue
 
 
 def main():
