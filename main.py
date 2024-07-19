@@ -48,9 +48,30 @@ def register_details(page, novels):
                 page.ele("@value=詳細内容登録").click()
             else:
                 pass
+            script = f"""
+                var ul = document.querySelector('ul.tagit.ui-widget.ui-widget-content.ui-corner-all');
+                var li = document.createElement('li');
+                li.className = 'tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable';
+                var span = document.createElement('span');
+                span.className = 'tagit-label';
+                span.textContent = '{title}';
+                var a = document.createElement('a');
+                a.className = 'tagit-close';
+                var spanIcon = document.createElement('span');
+                spanIcon.className = 'text-icon';
+                spanIcon.textContent = '×';
+                var spanUiIcon = document.createElement('span');
+                spanUiIcon.className = 'ui-icon ui-icon-close';
+                a.appendChild(spanIcon);
+                a.appendChild(spanUiIcon);
+                li.appendChild(span);
+                li.appendChild(a);
+                ul.appendChild(li);
+            """
+            page.run_script(script)
             sleep(2)
     except Exception as e:
-        print(f"詳細内容登録エラー: {e}")
+        print(f'詳細内容登録エラー: {e}')
         page.quit()
 
 def main():
