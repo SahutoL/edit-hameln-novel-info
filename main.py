@@ -45,7 +45,6 @@ def register_details(page, novels):
 
             if text_to_input not in existing_text:
                 textfield.input(text_to_input)
-                page.ele("@value=詳細内容登録").click()
             else:
                 pass
             script = f"""
@@ -72,6 +71,8 @@ def register_details(page, novels):
                 }}
             """
             page.run_script(script)
+            sleep(1)
+            page.ele("@value=詳細内容登録").click()
             sleep(2)
     except Exception as e:
         print(f'詳細内容登録エラー: {e}')
