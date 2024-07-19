@@ -35,8 +35,8 @@ def get_favorites(page):
         return novels
 
 def register_details(page, novels):
-    try:
-        for novel in novels:
+    for novel in novels:
+        try:
             url = f'https://syosetu.org/?mode=favo_input&nid={novel}'
             page.get(url)
             author = page.ele(".section3").ele('tag:h3').text.split('）(')[0].split('（作者：')[1]
@@ -47,8 +47,7 @@ def register_details(page, novels):
 
             if text_to_input.split('\n')[0] not in existing_text.split(' ') or text_to_input.split('\n')[1] not in existing_text.split(' '):
                 textfield.input(text_to_input, clear=True)
-            else:
-                pass
+
             script = f"""
                 var ul = document.querySelector('ul.tagit.ui-widget.ui-widget-content.ui-corner-all');
                 var exists = Array.from(ul.children).some(li => li.childNodes[0].textContent === '{title}');
@@ -60,10 +59,8 @@ def register_details(page, novels):
             sleep(1)
             page.ele("@value=詳細内容登録").click()
             sleep(2)
-    except Exception as e:
-        print(e)
-        print(f'対象の小説は削除されているか或は非公開に設定されています。\n \'https://www.google.com/search?q=site:syosetu.org%20nid={novel}\' にて該当作品の情報が見つかるかもしれません')
-        #continue
+        except Exception as e:
+            print(f'対象の小説は削除されているか或は非公開に設定されています。\n https://www.google.com/search?q=site:syosetu.org%20nid={novel} にて該当作品の情報が見つかるかもしれません')
 
 
 def main():
