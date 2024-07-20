@@ -46,12 +46,12 @@ python main.py
 
 - `--no-note`: メモ欄への作品名と作者名の入力処理を無効化します
   ```
-  python script.py --no-note
+  python main.py --no-note
   ```
 
 - `--no-tag`: タグへの作品名の追加処理を無効化します
   ```
-  python script.py --no-tag
+  python main.py --no-tag
   ```
 
 
