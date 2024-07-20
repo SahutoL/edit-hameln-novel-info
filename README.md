@@ -41,6 +41,20 @@ USER_PASSWORD=your_user_password
 python main.py
 ```
 
+3. オプショナル引数
+以下のオプショナル引数の設定により、編集する内容を制御できます:
+
+- `--no-note`: メモ欄への作品名と作者名の入力処理を無効化します
+  ```
+  python script.py --no-note
+  ```
+
+- `--no-tag`: タグへの作品名の追加処理を無効化します
+  ```
+  python script.py --no-tag
+  ```
+
+
 ## 動作の詳細
 
 1. ハーメルンにログインします。
