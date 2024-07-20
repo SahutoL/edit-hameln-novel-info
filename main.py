@@ -48,7 +48,7 @@ def register_details(page, novels, no_note, no_tag):
                 text_to_input = f'作品名：{title}\n作者名：{author}'
                 existing_text = textfield.text
                 if text_to_input.split('\n')[0] not in existing_text.split(' ') or text_to_input.split('\n')[1] not in existing_text.split(' '):
-                    textfield.input(text_to_input, clear=True)
+                    textfield.input(text_to_input)
 
             if not no_tag:
                 script = f"""
