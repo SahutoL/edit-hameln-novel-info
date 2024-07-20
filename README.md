@@ -23,7 +23,7 @@
 2. 必要なライブラリをインストールします：
 
 ```bash
-pip install DrissionPage python-dotenv
+pip install -r requirements.txt
 ```
 
 ## 使用方法
