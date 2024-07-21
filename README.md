@@ -30,7 +30,7 @@ pip install -r requirements.txt
 
 1. プロジェクトのルートディレクトリに`.env`ファイルを作成し、以下の内容を記入します：
 
-```
+```.env
 USER_ID=your_user_id
 USER_PASSWORD=your_user_password
 ```
@@ -45,12 +45,12 @@ python main.py
 以下のオプショナル引数の設定により、編集する内容を制御できます:
 
 - `--no-note`: メモ欄への作品名と作者名の入力処理を無効化します
-  ```
+  ```bash
   python main.py --no-note
   ```
 
 - `--no-tag`: タグへの作品名の追加処理を無効化します
-  ```
+  ```bash
   python main.py --no-tag
   ```
 
