@@ -1,3 +1,4 @@
+<!--
 ## 概要
 
 本プロジェクトは、[DrissionPage](https://github.com/g1879/DrissionPage)を使用してweb小説投稿サイト[ハーメルン](https://syosetu.org)へログインし、お気に入り登録された全ての小説のメモ及びタグを編集するツールです。
@@ -73,3 +74,4 @@ python main.py
 ## ライセンス
 
 このプロジェクトは[MITライセンス](LICENSE)の下で公開されています。
+-->
