@@ -1,20 +1,22 @@
 from DrissionPage import ChromiumOptions, ChromiumPage
 from dotenv import load_dotenv
 from time import sleep
-import os
-import argparse
+import argparse, os, random
 
 load_dotenv()
+
+def get_random_delay():
+    return random.uniform(2, 6)
 
 def login(page, userId, password):
     try:
         page.get("https://syosetu.org/")
         page.ele("@value=ログインページへ").click()
-        sleep(2)
+        sleep(get_random_delay())
         page.ele("@name=id").input(userId)
         page.ele("@name=pass").input(password)
         page.ele("@value=ログイン").click()
-        sleep(2)
+        sleep(get_random_delay())
     except Exception as e:
         print(f"ログインエラー: {e}")
         page.quit()
@@ -29,7 +31,7 @@ def get_favorites(page):
             page.get(f'https://syosetu.org/?mode=favo&page={i+1}')
             links = page.eles("@name=multi_id")
             novels.extend([link.attr('value') for link in links])
-            sleep(3)
+            sleep(get_random_delay())
         return novels
     except Exception as e:
         print(f"お気に入り小説取得エラー: {e}")
@@ -60,9 +62,9 @@ def register_details(page, novels, no_note, no_tag):
                 """
                 page.run_js(script)
 
-            sleep(1)
+            sleep(get_random_delay())
             page.ele("@value=詳細内容登録").click()
-            sleep(2)
+            sleep(get_random_delay())
         except Exception as e:
             print(f'対象の小説は削除されているか或は非公開に設定されています。\n https://www.google.com/search?q=site:syosetu.org%20nid={novel} にて該当作品の情報が見つかるかもしれません')
 
